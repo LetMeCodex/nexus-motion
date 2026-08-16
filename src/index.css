@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+:root {
+  /* Scientific Storybook & Swiss Editorial Palette */
+  --bg-ink: #08090e;
+  --bg-surface: #0e111a;
+  --bg-surface-elevated: #151926;
+  --bg-paper-tint: #f5f2ea;
+  
+  --text-paper: #f5f2ea;
+  --text-paper-muted: #a6b0c2;
+  --text-paper-dim: #647087;
+  
+  /* Precision Scientific Accents */
+  --accent-thermal: #d9532f;     /* Solar / Thermal vermilion */
+  --accent-hydrological: #4299e1; /* Oceanic / Atmospheric blue */
+  --accent-canopy: #48bb78;      /* Vegetation / Evapotranspiration green */
+  --accent-energy: #ecc94b;      /* Power / Network amber */
+  --accent-alert: #f56565;       /* Compound risk coral */
+  
+  --border-subtle: rgba(245, 242, 234, 0.08);
+  --border-medium: rgba(245, 242, 234, 0.16);
+  --border-active: rgba(217, 83, 47, 0.4);
+  
+  --font-serif: 'Newsreader', serif;
+  --font-swiss: 'Space Grotesk', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Syne', sans-serif;
+  
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  background-color: var(--bg-ink);
+  color: var(--text-paper);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Typography Classes */
+.font-serif-editorial {
+  font-family: var(--font-serif);
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+.font-swiss-heading {
+  font-family: var(--font-swiss);
+  letter-spacing: -0.025em;
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+/* Physical Scientific Paper Grain */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Museum Exhibition Double-Bezel Card */
+.museum-card {
+  background: rgba(245, 242, 234, 0.025);
+  border: 1px solid rgba(245, 242, 234, 0.09);
+  border-radius: 1.25rem;
+  padding: 0.25rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s var(--ease-cinematic);
+}
+
+.museum-card:hover {
+  border-color: rgba(245, 242, 234, 0.18);
+  box-shadow: 0 35px 65px -15px rgba(0, 0, 0, 0.85);
+}
+
+.museum-card-inner {
+  background: rgba(14, 17, 26, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(245, 242, 234, 0.06);
+  border-radius: calc(1.25rem - 0.25rem);
+  box-shadow: inset 0 1px 0 rgba(245, 242, 234, 0.08);
+}
+
+/* Scientific Tag / Pill */
+.scientific-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  background: rgba(245, 242, 234, 0.04);
+  border: 1px solid rgba(245, 242, 234, 0.12);
+  color: var(--text-paper);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.scientific-pill-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--accent-thermal);
+  box-shadow: 0 0 6px rgba(217, 83, 47, 0.8);
+}
+
+/* Button & Action System */
+.atlas-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(245, 242, 234, 0.06);
+  border: 1px solid rgba(245, 242, 234, 0.14);
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: var(--font-swiss);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  backdrop-filter: blur(16px);
+  transition: all 0.3s var(--ease-cinematic);
+  position: relative;
+  overflow: hidden;
+}
+
+.atlas-btn:hover {
+  background: rgba(245, 242, 234, 0.14);
+  border-color: rgba(245, 242, 234, 0.3);
+  transform: translateY(-1px);
+}
+
+.atlas-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.atlas-btn-primary {
+  background: var(--accent-thermal);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.atlas-btn-primary:hover {
+  background: #e0623f;
+  box-shadow: 0 10px 25px -5px rgba(217, 83, 47, 0.4);
+}
+
+/* Cartographic Crosshair & Graticule */
+.carto-crosshair {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(245, 242, 234, 0.25);
+  pointer-events: none;
+}
+
+/* SVG Stroke Dash Animation Utilities */
+.svg-draw-anim {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: svgDraw 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes svgDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Animated Flow Streamline */
+@keyframes flowStream {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-streamline {
+  stroke-dasharray: 8 6;
+  animation: flowStream 1.2s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08090e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 242, 234, 0.16);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 242, 234, 0.35);
+}
